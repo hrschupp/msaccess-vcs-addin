@@ -83,6 +83,7 @@ Public StripPublishOption As Boolean
 Public PreserveRubberDuckID As Boolean
 Public SaveAllDocumentProperties As Boolean
 Public SaveLinkedTableDef As Boolean
+Public ConnectionIdentity As Long
 Public HashAlgorithm As String
 Public UseShortHash As Boolean
 Public UseGitIntegration As Boolean
@@ -196,6 +197,7 @@ Public Sub LoadDefaults()
         .PreserveRubberDuckID = False
         .SaveAllDocumentProperties = False
         .SaveLinkedTableDef = False
+        .ConnectionIdentity = eciDbUnderscore
         .HashAlgorithm = DefaultHashAlgorithm
         .UseShortHash = True
         .UseGitIntegration = False
@@ -773,7 +775,7 @@ Public Function GetCategoryHashes() As Dictionary
                 AddToCat dCats, "Queries", varKey, dOptions("Options")
 
             ' --- Table Definitions ---
-            Case "SaveTableSQL", "SaveLinkedTableDef"
+            Case "SaveTableSQL", "SaveLinkedTableDef", "ConnectionIdentity"
                 AddToCat dCats, "Tables", varKey, dOptions("Options")
 
             ' --- Themes ---
@@ -946,6 +948,24 @@ End Function
 
 
 '---------------------------------------------------------------------------------------
+' Procedure : GetConnectionIdentityMethodName
+' Author    : Hans Schupp
+' Date      : 11/09/2026
+' Purpose   : Return the display name for the ConnectionIdentity option value.
+'---------------------------------------------------------------------------------------
+'
+Public Function GetConnectionIdentityMethodName(intLevel As eConnIdentity) As String
+    Select Case intLevel
+        Case eciDbUnderscore:       GetConnectionIdentityMethodName = "DB name with underscore"
+        Case eciDbEscaped:          GetConnectionIdentityMethodName = "DB name with escapes"
+        Case eciAlwaysHashed:       GetConnectionIdentityMethodName = "Always hashed"
+        Case eciDbServerEscaped:    GetConnectionIdentityMethodName = "DB+Server with escapes"
+        Case Else:                  GetConnectionIdentityMethodName = vbNullString
+    End Select
+End Function
+
+
+'---------------------------------------------------------------------------------------
 ' Procedure : GetTableExportFormat
 ' Author    : Adam Waller
 ' Date      : 4/17/2020
@@ -1034,6 +1054,7 @@ Private Sub Class_Initialize()
         .Add "PreserveRubberDuckID"
         .Add "SaveAllDocumentProperties"
         .Add "SaveLinkedTableDef"
+        .Add "ConnectionIdentity"
         .Add "HashAlgorithm"
         .Add "UseShortHash"
         .Add "UseGitIntegration"

@@ -70,6 +70,15 @@ Public Enum eUseEnvConnections
     [_Last]
 End Enum
 
+' Connection identity for export (see GetConnectionEnvKey and Form_frmVCSOptionsAdvanced), tweak
+Public Enum eConnIdentity
+    eciDbUnderscore = 0
+    eciDbEscaped
+    eciAlwaysHashed
+    eciDbServerEscaped
+    [_Last]
+End Enum
+
 
 '---------------------------------------------------------------------------------------
 ' Procedure : HandleRibbonCommand

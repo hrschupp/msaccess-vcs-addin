@@ -22,6 +22,22 @@ Implements IOptionsSection
 '---------------------------------------------------------------------------------------
 '
 Private Sub Form_Load()
+
+    Dim opt As clsOptions
+    Dim intCILevel As eConnIdentity
+
+    Set opt = Form_frmVCSOptions.OptionsInstance
+
+    ' Populate connection identity string combo
+    With Me.cboConnectionIdentity
+        .RowSource = vbNullString
+        For intCILevel = eciDbUnderscore To eConnIdentity.[_Last] - 1
+            .AddItem intCILevel & ";" & opt.GetConnectionIdentityMethodName(intCILevel)
+        Next intCILevel
+        .ControlTipText = T("The identity defaults to the DB name in version 5, non-ASCII characters are replaced by underscores. " & _
+            "It's possible to extend this identity to the server name und use escape sequences to avoid clashes. Or use the hashing.")
+    End With
+
     LoadOptions
 End Sub
 
@@ -66,6 +82,7 @@ Private Sub LoadOptions()
         Me.chkPreserveRubberDuckID = .PreserveRubberDuckID
         Me.chkSaveAllDocumentProperties = .SaveAllDocumentProperties
         Me.chkSaveLinkedTableDef = .SaveLinkedTableDef
+        Me.cboConnectionIdentity = .ConnectionIdentity
 
         ' System
         Me.chkUseGitIntegration = .UseGitIntegration
@@ -107,6 +124,7 @@ Private Sub SaveOptions()
         .PreserveRubberDuckID = Nz(Me.chkPreserveRubberDuckID)
         .SaveAllDocumentProperties = Nz(Me.chkSaveAllDocumentProperties)
         .SaveLinkedTableDef = Nz(Me.chkSaveLinkedTableDef)
+        .ConnectionIdentity = Nz(Me.cboConnectionIdentity, 0)
 
         ' System
         .UseGitIntegration = Nz(Me.chkUseGitIntegration, 0)

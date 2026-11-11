@@ -12,7 +12,7 @@ Begin Form
     GridY =24
     Width =6480
     DatasheetFontHeight =11
-    ItemSuffix =34
+    ItemSuffix =36
     Right =50000
     Bottom =50000
     RecSrcDt = Begin
@@ -123,7 +123,7 @@ Begin Form
             GridlineShade =65.0
         End
         Begin Section
-            Height =15915
+            Height =16050
             BackColor =15130848
             Name ="Detail"
             AlternateBackColor =15130848
@@ -220,8 +220,8 @@ Begin Form
                 Begin Line
                     BorderWidth =1
                     OverlapFlags =85
-                    Left =60
-                    Top =12360
+                    Left =45
+                    Top =12555
                     Width =6420
                     Name ="Line4"
                     BorderThemeColorIndex =1
@@ -229,8 +229,8 @@ Begin Form
                 End
                 Begin Label
                     OverlapFlags =85
-                    Left =60
-                    Top =12000
+                    Left =45
+                    Top =12195
                     Width =6360
                     Height =300
                     FontWeight =700
@@ -242,16 +242,16 @@ Begin Form
                 End
                 Begin CheckBox
                     OverlapFlags =85
-                    Left =420
-                    Top =12775
+                    Left =405
+                    Top =12970
                     TabIndex =13
                     Name ="chkContributeTranslations"
 
                     Begin
                         Begin Label
                             OverlapFlags =85
-                            Left =720
-                            Top =12720
+                            Left =705
+                            Top =12915
                             Width =5580
                             Height =360
                             ForeColor =5324600
@@ -264,8 +264,8 @@ Begin Form
                 End
                 Begin Label
                     OverlapFlags =85
-                    Left =720
-                    Top =13200
+                    Left =705
+                    Top =13395
                     Width =5580
                     Height =480
                     FontSize =10
@@ -277,8 +277,8 @@ Begin Form
                 Begin Line
                     BorderWidth =1
                     OverlapFlags =85
-                    Left =60
-                    Top =14400
+                    Left =45
+                    Top =14595
                     Width =6420
                     Name ="Line6"
                     BorderThemeColorIndex =1
@@ -286,8 +286,8 @@ Begin Form
                 End
                 Begin Label
                     OverlapFlags =85
-                    Left =60
-                    Top =14040
+                    Left =45
+                    Top =14235
                     Width =6360
                     Height =300
                     FontWeight =700
@@ -357,16 +357,16 @@ Begin Form
                 End
                 Begin CheckBox
                     OverlapFlags =85
-                    Left =420
-                    Top =14640
+                    Left =405
+                    Top =14835
                     TabIndex =14
                     Name ="chkShowVCSLegacy"
 
                     Begin
                         Begin Label
                             OverlapFlags =85
-                            Left =720
-                            Top =14580
+                            Left =705
+                            Top =14775
                             Width =2640
                             Height =315
                             ForeColor =5324600
@@ -490,16 +490,16 @@ Begin Form
                 End
                 Begin CheckBox
                     OverlapFlags =85
-                    Left =420
-                    Top =15120
+                    Left =405
+                    Top =15315
                     TabIndex =15
                     Name ="chkShowDebug"
 
                     Begin
                         Begin Label
                             OverlapFlags =85
-                            Left =720
-                            Top =15060
+                            Left =705
+                            Top =15255
                             Width =2640
                             Height =315
                             ForeColor =5324600
@@ -512,16 +512,16 @@ Begin Form
                 End
                 Begin CheckBox
                     OverlapFlags =85
-                    Left =420
-                    Top =15600
+                    Left =405
+                    Top =15795
                     TabIndex =16
                     Name ="chkUseShortHash"
 
                     Begin
                         Begin Label
                             OverlapFlags =85
-                            Left =720
-                            Top =15540
+                            Left =705
+                            Top =15735
                             Width =2640
                             Height =315
                             ForeColor =5324600
@@ -535,8 +535,8 @@ Begin Form
                 Begin Line
                     BorderWidth =1
                     OverlapFlags =85
-                    Left =60
-                    Top =10140
+                    Left =45
+                    Top =10335
                     Width =6420
                     Name ="Line21"
                     BorderThemeColorIndex =1
@@ -544,8 +544,8 @@ Begin Form
                 End
                 Begin Label
                     OverlapFlags =85
-                    Left =60
-                    Top =9780
+                    Left =45
+                    Top =9975
                     Width =6360
                     Height =300
                     FontWeight =700
@@ -560,8 +560,8 @@ Begin Form
                     OverlapFlags =85
                     IMESentenceMode =3
                     ListWidth =1440
-                    Left =2100
-                    Top =10380
+                    Left =2085
+                    Top =10575
                     Width =1560
                     Height =315
                     TabIndex =11
@@ -573,8 +573,8 @@ Begin Form
                     Begin
                         Begin Label
                             OverlapFlags =85
-                            Left =420
-                            Top =10380
+                            Left =405
+                            Top =10575
                             Width =1560
                             Height =315
                             ForeColor =5324600
@@ -587,8 +587,8 @@ Begin Form
                 End
                 Begin Label
                     OverlapFlags =85
-                    Left =420
-                    Top =10800
+                    Left =405
+                    Top =10995
                     Width =5820
                     Height =360
                     FontSize =10
@@ -599,16 +599,16 @@ Begin Form
                 Begin CheckBox
                     Visible = NotDefault
                     OverlapFlags =85
-                    Left =420
-                    Top =11400
+                    Left =405
+                    Top =11595
                     TabIndex =12
                     Name ="chkUseGitIntegration"
 
                     Begin
                         Begin Label
                             OverlapFlags =85
-                            Left =720
-                            Top =11340
+                            Left =705
+                            Top =11535
                             Width =2640
                             Height =315
                             ForeColor =5324600
@@ -741,6 +741,37 @@ Begin Form
                             ForeColor =5324600
                             Name ="lblExportTestResultsHtml"
                             Caption ="Export HTML test results report (double-click to view)"
+                            ForeThemeColorIndex =-1
+                            ForeTint =100.0
+                        End
+                    End
+                End
+                Begin ComboBox
+                    RowSourceTypeInt =1
+                    OverlapFlags =85
+                    IMESentenceMode =3
+                    ColumnCount =2
+                    ListWidth =2835
+                    Left =2550
+                    Top =9375
+                    Width =2910
+                    Height =315
+                    TabIndex =17
+                    Name ="cboConnectionIdentity"
+                    RowSourceType ="Value List"
+                    ColumnWidths ="0"
+                    AllowValueListEdits =0
+
+                    Begin
+                        Begin Label
+                            OverlapFlags =85
+                            Left =405
+                            Top =9375
+                            Width =1980
+                            Height =315
+                            ForeColor =5324600
+                            Name ="Label35"
+                            Caption ="Connection Identity:"
                             ForeThemeColorIndex =-1
                             ForeTint =100.0
                         End
