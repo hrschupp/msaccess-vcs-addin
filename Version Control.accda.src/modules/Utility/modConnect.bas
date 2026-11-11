@@ -1344,13 +1344,19 @@ Public Function GetConnectionEnvKey(strConnect As String) As String
         Else
             ' ODBC or other: use DATABASE name directly
             strIdentity = strDbName
+            If Options.ConnectionIdentity = eciDbServerEscaped Then
+                strPart = GetConnectPart(strConnect, "SERVER")
+                If Len(strPart) > 0 Then
+                    strIdentity = strIdentity & "_" & strPart
+                End If
+            End If
         End If
     Else
         ' No DATABASE=; try DSN=
         strIdentity = GetConnectPart(strConnect, "DSN")
     End If
 
-    If Len(strIdentity) > 0 Then
+    If Len(strIdentity) > 0 And Options.ConnectionIdentity <> eciAlwaysHashed Then
         ' Readable key from database identity (sanitized to lowercase)
         GetConnectionEnvKey = ENV_KEY_PREFIX & SanitizeKeyName(strIdentity)
     Else
@@ -1385,8 +1391,10 @@ Private Function SanitizeKeyName(strName As String) As String
 
     Dim lngPos As Long
     Dim strChar As String
+    Dim blnEscape As Boolean
 
     SanitizeKeyName = LCase$(strName)
+    blnEscape = (Options.ConnectionIdentity = eciDbEscaped Or Options.ConnectionIdentity = eciDbServerEscaped)
     For lngPos = 1 To Len(SanitizeKeyName)
         strChar = Mid$(SanitizeKeyName, lngPos, 1)
         Select Case True
@@ -1395,7 +1403,11 @@ Private Function SanitizeKeyName(strName As String) As String
                  (strChar = "_")
                 ' Keep lowercase alphanumeric and underscore
             Case Else
-                Mid$(SanitizeKeyName, lngPos, 1) = "_"
+                If blnEscape Then
+                    SanitizeKeyName = Left$(SanitizeKeyName, lngPos - 1) + "#" + Right$("0000" & Hex$(AscW(strChar)), 4) + Mid$(SanitizeKeyName, lngPos + 1)
+                Else
+                    Mid$(SanitizeKeyName, lngPos, 1) = "_"
+                End If
         End Select
     Next lngPos
 
